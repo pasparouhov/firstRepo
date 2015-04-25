@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  p Update title below
+  form(action="/message" method="POST")
+    |Username:
+    br
+    input(type="text" name="username")
+    br
+    |Message:
+    br
+    input(type="text" name="message")
+    br
+    input(type="submit" value="Send Message")
+  p  messages
+  if messages
+    -each messageObject in messages
+      p  #{messageObject.username} : #{messageObject.message} 
+
+  form(action="/clear" method="POST")
+    input(type="submit" value="Clear all messages")
